@@ -64,4 +64,10 @@
 		<PackageReference Include="Microsoft.Maui.Maps" Version="8.0.20" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Pages\" />
+	  <Folder Include="View\" />
+	  <Folder Include="ViewModel\" />
+	</ItemGroup>
+
 </Project>
