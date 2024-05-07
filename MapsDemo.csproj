@@ -68,8 +68,13 @@
 
 	<ItemGroup>
 	  <Folder Include="Pages\" />
-	  <Folder Include="View\" />
 	  <Folder Include="ViewModel\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\MapPage.xaml.cs">
+	    <DependentUpon>MapPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

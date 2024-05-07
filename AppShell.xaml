@@ -7,8 +7,12 @@
     Shell.FlyoutBehavior="Disabled"
     Title="MapsDemo">
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        
+        <ShellContent
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
 
+    </TabBar>
+    
 </Shell>
