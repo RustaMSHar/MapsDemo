@@ -7,20 +7,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-
 namespace MapsDemo
 {
     public partial class MainPage : ContentPage
     {
-       
-        
-
         public MainPage()
         {
             InitializeComponent();
-
             LoadFlightsRepeatedly();
-
         }
         private async Task LoadFlightsRepeatedly()
         {
