@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
+
 namespace MapsDemo
 {
     public partial class MainPage : ContentPage
@@ -49,6 +50,7 @@ namespace MapsDemo
                             Type = PinType.Place,
                             Location = new Location(flight.Geography.Latitude, flight.Geography.Longitude)
                         };
+
                         MyMap.Pins.Add(pin);
                     }
                 }
