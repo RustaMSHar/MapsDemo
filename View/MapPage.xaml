@@ -6,14 +6,16 @@
              xmlns:map="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:loc="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+             xmlns:ctrl="clr-namespace:MapsDemo.Controls"
              x:Class="MapsDemo.MainPage">
     
     <StackLayout>
-        <maps:Map x:Name="MyMap"
-                  IsShowingUser="True" 
-                  VerticalOptions="FillAndExpand">
+        <ctrl:MapEx x:Name="MyMap"
+                    IsShowingUser="True" 
+                    VerticalOptions="FillAndExpand"
+                    CustomPins="{Binding Pins}">
 
-        </maps:Map>
+        </ctrl:MapEx>
     </StackLayout>
 
 

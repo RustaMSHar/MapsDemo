@@ -16,7 +16,16 @@ public static class MauiProgram
         {
             fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
             fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-        }).UseMauiCommunityToolkit();
+        }).UseMauiCommunityToolkit()
+        .ConfigureMauiHandlers(handlers =>
+        {
+
+# if ANDROID 
+            handlers.AddHandler<Microsoft.Maui.Controls.Maps.Map, MapsDemo.Platforms.Android.CustomMapHandler>();
+#elif IOS
+            handlers.AddHandler<Microsoft.Maui.Controls.Maps.Map, MapsDemo.Platforms.iOS.CustomMapHandler>();
+#endif
+        });
 
 
 #if DEBUG || WINDOWS

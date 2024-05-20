@@ -5,16 +5,27 @@ using MapsDemo.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MapsDemo.Controls;
+using System.Net.NetworkInformation;
 
 
 namespace MapsDemo
 {
     public partial class MainPage : ContentPage
     {
+        private List<MapPin> _pins;
+        public List<MapPin> Pins
+        {
+            get { return _pins; }
+            set { _pins = value; OnPropertyChanged(); }
+        }
         public MainPage()
         {
+            
             InitializeComponent();
             LoadFlightsRepeatedly();
+
+            BindingContext = this;
         }
         private async Task LoadFlightsRepeatedly()
         {
@@ -25,34 +36,49 @@ namespace MapsDemo
             }
         }
 
+        private async void MapPinClicked(MapPin pin)
+        {
+            await DisplayAlert("Flight Information", $"Flight Number: {pin.Label}\nICAO Number: {pin.Address}", "OK");
+        }
         private async Task LoadFlights()
         {
+
             try
             {
                 var flights = await ApiService.GetTracker();
+                var newPins = new List<MapPin>();
                 // Очистка текущих маркеров на карте
+
                 MyMap.Pins.Clear();
+                newPins.Clear();
 
                 foreach (var flight in flights)
                 {
                     if (flight.Geography.Latitude != 0 && flight.Geography.Longitude != 0)
                     {
-                        var pin = new Pin
+
+                        var pin = new MapPin(MapPinClicked)
                         {
+                            Id = Guid.NewGuid().ToString(),
                             Label = flight.FlightDetails.Number,
                             Address = flight.FlightDetails.IcaoNumber,
                             Type = PinType.Place,
-                            Location = new Location(flight.Geography.Latitude, flight.Geography.Longitude)
+                            Position = new Location(flight.Geography.Latitude, flight.Geography.Longitude),
+                            IconSrc = "dotred" 
                         };
+                        newPins.Add(pin);
 
-                        MyMap.Pins.Add(pin);
                     }
                 }
+                Pins = newPins; 
+
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
+
         }
+
     }
 }

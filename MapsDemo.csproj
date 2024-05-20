@@ -59,6 +59,9 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+	  <None Remove="Resources\Images\dot.png" />
+	  <None Remove="Resources\Images\dotred.png" />
+	  <None Remove="Resources\Images\pinmarker.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -74,7 +77,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Pages\" />
-	  <Folder Include="ViewModel\" />
 	</ItemGroup>
 
 	<ItemGroup>
