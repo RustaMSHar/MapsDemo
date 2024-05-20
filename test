@@ -1,0 +1,74 @@
+using MapsDemo.Services;
+using Microsoft.Maui.Controls.Maps;
+using Microsoft.Maui.Controls;
+using MapsDemo.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MapsDemo.Controls;
+
+
+namespace MapsDemo
+{
+    public partial class MainPage : ContentPage
+    {
+        private List<MapPin> _pins;
+        public List<MapPin> Pins
+        {
+            get { return _pins; }
+            set { _pins = value; OnPropertyChanged(); }
+        }
+        public MainPage()
+        {
+
+            InitializeComponent();
+            LoadFlightsRepeatedly();
+        }
+        private async Task LoadFlightsRepeatedly()
+        {
+            while (true)
+            {
+                await LoadFlights();
+                await Task.Delay(5000); // Приостановка выполнения на 5 секунд
+            }
+        }
+
+        private void MapPinClicked(MapPin pin)
+        {
+            // Handle pin click
+        }
+        private async Task LoadFlights()
+        {
+            
+            try
+            {
+                var flights = await ApiService.GetTracker();
+                // Очистка текущих маркеров на карте
+                MyMap.Pins.Clear();
+
+                foreach (var flight in flights)
+                {
+                    if (flight.Geography.Latitude != 0 && flight.Geography.Longitude != 0)
+                    {
+                        var Pins = new List<MapPin>()
+                        {
+                            new MapPin(MapPinClicked)
+                            {
+                                Id = Guid.NewGuid().ToString(),
+                                Position = new Location(flight.Geography.Latitude, flight.Geography.Longitude),
+                                IconSrc = "pinmarker"
+                            }
+                        };
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+
+        }
+
+    }
+}
