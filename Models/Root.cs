@@ -11,7 +11,7 @@ namespace MapsDemo.Models
         [JsonProperty("flight")]
         public FlightDetails FlightDetails { get; set; }
 
-        // Добавьте другие необходимые поля
+        // Другие необходимые поля
     }
 
     public class Geography
@@ -37,6 +37,6 @@ namespace MapsDemo.Models
         [JsonProperty("number")]
         public string Number { get; set; }
 
-        // Добавьте другие необходимые поля
+        // Другие необходимые поля
     }
 }
