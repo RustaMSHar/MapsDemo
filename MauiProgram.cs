@@ -3,6 +3,7 @@ using Microsoft.Maui.Maps;
 using CommunityToolkit.Maui.Maps;
 using CommunityToolkit.Maui;
 
+
 namespace MapsDemo;
 public static class MauiProgram
 {

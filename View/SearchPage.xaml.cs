@@ -1,0 +1,77 @@
+using MapsDemo.Controls;
+using MapsDemo.Models;
+using MapsDemo.Services;
+using Microsoft.Maui.Controls.Maps;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Net.NetworkInformation;
+using MapsDemo.Pages;
+
+
+namespace MapsDemo.View;
+
+public partial class SearchPage : ContentPage
+{
+	public SearchPage()
+	{
+		InitializeComponent();
+	}
+
+    private async void OnSearchByAirportsAndDate(object sender, EventArgs e)
+    {
+        string departureIata = departureEntry.Text;
+        string arrivalIata = arrivalEntry.Text;
+        string date = departureDate.Date.ToString("yyyy-MM-dd");
+
+        if (!string.IsNullOrEmpty(departureIata) && !string.IsNullOrEmpty(arrivalIata) && !string.IsNullOrEmpty(date))
+        {
+            var flights = await ApiService.SearchFlightsByAirportsAndDate(departureIata, arrivalIata, date);
+            // Обработка результатов поиска
+            flightResults.ItemsSource = flights;
+        }
+        else
+        {
+            await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля.", "OK");
+        }
+    }
+
+    private async void OnSearchByFlightCode(object sender, EventArgs e)
+    {
+        string flightCode = flightCodeEntry.Text;
+
+        if (!string.IsNullOrEmpty(flightCode))
+        {
+            try
+            {
+                var flight = await ApiService.SearchFlightByCode(flightCode);
+                if (flight != null)
+                {
+                    flightResults.ItemsSource = new List<Flight> { flight };
+                }
+                else
+                {
+                    await DisplayAlert("Ошибка", "Рейс не найден.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", "Не удалось получить данные рейса. Пожалуйста, попробуйте снова.", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Ошибка", "Пожалуйста, введите код рейса.", "OK");
+        }
+    }
+    private async void OnFlightSelected(object sender, ItemTappedEventArgs e)
+    {
+        if (e.Item != null && e.Item is Flight selectedFlight)
+        {
+            await Navigation.PushModalAsync(new FlightDetailsPage(selectedFlight));
+        }
+    }
+
+
+
+}

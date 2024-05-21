@@ -61,7 +61,11 @@
 	  <None Remove="Resources\AppIcon\appiconfg.svg" />
 	  <None Remove="Resources\Images\dot.png" />
 	  <None Remove="Resources\Images\dotred.png" />
+	  <None Remove="Resources\Images\Globe.png" />
 	  <None Remove="Resources\Images\pinmarker.png" />
+	  <None Remove="Resources\Images\route_name.png" />
+	  <None Remove="Resources\Images\world_big.png" />
+	  <None Remove="Resources\Images\world_white.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,10 +80,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Pages\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiAsset Include="Resources\AppIcon\appiconfg.svg" />
 	  <MauiAsset Include="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
@@ -88,6 +88,15 @@
 	  <Compile Update="View\MapPage.xaml.cs">
 	    <DependentUpon>MapPage.xaml</DependentUpon>
 	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Pages\FlightDetailsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\SearchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
