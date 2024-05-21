@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MapsDemo.View.SearchPage">
+             x:Class="MapsDemo.View.SearchPage"
+             BackgroundColor="#f0f0f5">
 
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderColor" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BackgroundColor" Value="#2c3e50"/>
+            <Setter Property="HasShadow" Value="True"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="Gray"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#1E90FF"/>
+        </Style>
+    </ContentPage.Resources>
 
     <Grid BackgroundColor="Black">
         <Grid.RowDefinitions>
@@ -12,44 +33,61 @@
         </Grid.RowDefinitions>
 
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="20">
-                <Label Text="Найти" TextColor="White" FontSize="24" Margin="0,10"/>
+            <StackLayout Padding="20" Spacing="10">
+                <Label Text="Найти" FontSize="24" Margin="0,10" HorizontalOptions="Center"/>
+
+                <!-- Picker для выбора режима поиска -->
+                <Picker x:Name="searchModePicker" SelectedIndexChanged="OnSearchModeChanged"  TextColor="White">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Поиск по аэропортам и дате</x:String>
+                            <x:String>Поиск по коду рейса</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
 
                 <!-- Поиск по аэропортам и дате -->
-                <StackLayout>
-                    <Label Text="Отправление (IATA)" TextColor="White"/>
-                    <Entry x:Name="departureEntry" TextColor="White" BackgroundColor="Gray"/>
+                <Frame x:Name="airportDateSearchFrame" IsVisible="True">
+                    <StackLayout Spacing="10">
+                        <Label Text="Отправление (IATA)"/>
+                        <Entry x:Name="departureEntry"/>
 
-                    <Label Text="Прибытие (IATA)" TextColor="White"/>
-                    <Entry x:Name="arrivalEntry" TextColor="White" BackgroundColor="Gray"/>
+                        <Label Text="Прибытие (IATA)"/>
+                        <Entry x:Name="arrivalEntry"/>
 
-                    <Label Text="Дата вылета" TextColor="White"/>
-                    <DatePicker x:Name="departureDate" TextColor="White" BackgroundColor="Gray"/>
+                        <Label Text="Дата вылета"/>
+                        <DatePicker x:Name="departureDate"/>
 
-                    <Button Text="Найти рейсы" TextColor="White" BackgroundColor="#1E90FF" Clicked="OnSearchByAirportsAndDate"/>
-                </StackLayout>
+                        <Button Text="Найти рейсы" Clicked="OnSearchByAirportsAndDate"/>
+                    </StackLayout>
+                </Frame>
 
                 <!-- Поиск по коду рейса -->
-                <StackLayout Margin="0,20">
-                    <Label Text="Код рейса" TextColor="White"/>
-                    <Entry x:Name="flightCodeEntry" TextColor="White" BackgroundColor="Gray"/>
+                <Frame x:Name="flightCodeSearchFrame" IsVisible="False">
+                    <StackLayout Spacing="10">
+                        <Label Text="Код рейса"/>
+                        <Entry x:Name="flightCodeEntry"/>
 
-                    <Button Text="Найти рейс" TextColor="White" BackgroundColor="#1E90FF" Clicked="OnSearchByFlightCode"/>
-                </StackLayout>
+                        <Button Text="Найти рейс" Clicked="OnSearchByFlightCode"/>
+                    </StackLayout>
+                </Frame>
 
                 <!-- Результаты поиска -->
-                <Label Text="Результаты поиска" TextColor="White" FontSize="18" Margin="0,20"/>
-                <ListView x:Name="flightResults" BackgroundColor="Gray" ItemTapped="OnFlightSelected">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Padding="10">
-                                    <Label Text="{Binding FlightDetails.IataNumber}" TextColor="White" FontSize="16"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <Label Text="Результаты поиска" FontSize="18" Margin="0,20"/>
+
+                <Frame>
+                    <ListView x:Name="flightResults" BackgroundColor="Transparent" ItemTapped="OnFlightSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10">
+                                        <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
             </StackLayout>
         </ScrollView>
     </Grid>

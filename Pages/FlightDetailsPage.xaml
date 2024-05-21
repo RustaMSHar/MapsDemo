@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MapsDemo.Pages.FlightDetailsPage">
+             x:Class="MapsDemo.Pages.FlightDetailsPage"
+             BackgroundColor="#f0f0f5">
 
     <ScrollView>
-        <StackLayout Padding="20">
-            <Label Text="Детали Рейса" FontSize="24" Margin="0,10"/>
+        <StackLayout Padding="20" Spacing="10">
+            <Label Text="Детали Рейса" FontSize="24" Margin="0,10" TextColor="#2c3e50" HorizontalOptions="Center"/>
 
-            <Label Text="Рейс:" FontSize="18"/>
-            <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16"/>
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Рейс:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
 
-            <Label Text="Статус:" FontSize="18"/>
-            <Label Text="{Binding Status}" FontSize="16"/>
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Статус:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Status}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
 
-            <Label Text="Авиакомпания:" FontSize="18"/>
-            <Label Text="{Binding Airline.IataCode}" FontSize="16"/>
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Авиакомпания:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Airline.IataCode}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
 
-            <Label Text="Отправление:" FontSize="18"/>
-            <Label Text="{Binding Departure.IataCode}" FontSize="16"/>
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Отправление:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Departure.IataCode}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
 
-            <Label Text="Прибытие:" FontSize="18"/>
-            <Label Text="{Binding Arrival.IataCode}" FontSize="16"/>
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Прибытие:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Arrival.IataCode}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
 
-            <!-- Добавьте другие необходимые детали рейса -->
+            <!-- Добавьте другие необходимые детали рейса с таким же стилем -->
+
         </StackLayout>
     </ScrollView>
-
 </ContentPage>

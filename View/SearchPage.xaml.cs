@@ -72,6 +72,24 @@ public partial class SearchPage : ContentPage
         }
     }
 
+    private void OnSearchModeChanged(object sender, EventArgs e)
+    {
+        var picker = sender as Picker;
+        if (picker != null)
+        {
+            if (picker.SelectedIndex == 0) // Поиск по аэропортам и дате
+            {
+                airportDateSearchFrame.IsVisible = true;
+                flightCodeSearchFrame.IsVisible = false;
+            }
+            else if (picker.SelectedIndex == 1) // Поиск по коду рейса
+            {
+                airportDateSearchFrame.IsVisible = false;
+                flightCodeSearchFrame.IsVisible = true;
+            }
+        }
+    }
+
 
 
 }

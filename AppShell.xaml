@@ -8,19 +8,14 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
+
+        <Tab Title="Карта" Icon="{OnPlatform 'globe.png', iOS='globe.png', MacCatalyst='globe.png'}">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+        </Tab>
+        <Tab Title="Рейсы" Icon="{OnPlatform 'map_pin.png', iOS='map_pin.png', MacCatalyst='map_pin.png'}">
+            <ShellContent ContentTemplate="{DataTemplate View:SearchPage}" Route="SearchPage" />
+        </Tab>
         
-        <ShellContent
-            Title="Карта"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" 
-            Icon="{OnPlatform 'globe.png', iOS='globe.png', MacCatalyst='globe.png'}" />
-
-        <ShellContent
-            Title="Рейсы"
-            ContentTemplate="{DataTemplate View:SearchPage}"
-            Route="SearchPage"
-            Icon="{OnPlatform 'map_pin.png', iOS='map_pin.png', MacCatalyst='map_pin.png'}"/>
-
     </TabBar>
     
 </Shell>
