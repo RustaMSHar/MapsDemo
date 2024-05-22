@@ -15,7 +15,11 @@
         <Tab Title="Рейсы" Icon="{OnPlatform 'map_pin.png', iOS='map_pin.png', MacCatalyst='map_pin.png'}">
             <ShellContent ContentTemplate="{DataTemplate View:SearchPage}" Route="SearchPage" />
         </Tab>
-        
+        <Tab Title="Заметки" Icon="{OnPlatform 'notes.png', iOS='notes.png', MacCatalyst='notes.png'}">
+            <ShellContent ContentTemplate="{DataTemplate View:AllNotesPage}" Route="AllNotesPage" />
+        </Tab>
+      
+
     </TabBar>
     
 </Shell>
