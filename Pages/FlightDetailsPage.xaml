@@ -25,21 +25,35 @@
             <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
                 <StackLayout Spacing="5">
                     <Label Text="Авиакомпания:" FontSize="18" TextColor="#34495e"/>
-                    <Label Text="{Binding Airline.IataCode}" FontSize="16" TextColor="#2c3e50"/>
+                    <Label x:Name="AirlineLabel" FontSize="16" TextColor="#2c3e50"/>
                 </StackLayout>
             </Frame>
 
             <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
                 <StackLayout Spacing="5">
                     <Label Text="Отправление:" FontSize="18" TextColor="#34495e"/>
-                    <Label Text="{Binding Departure.IataCode}" FontSize="16" TextColor="#2c3e50"/>
+                    <Label x:Name="DepartureLabel" FontSize="16" TextColor="#2c3e50"/>
                 </StackLayout>
             </Frame>
 
             <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
                 <StackLayout Spacing="5">
                     <Label Text="Прибытие:" FontSize="18" TextColor="#34495e"/>
-                    <Label Text="{Binding Arrival.IataCode}" FontSize="16" TextColor="#2c3e50"/>
+                    <Label x:Name="ArrivalLabel" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Высота:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Geography.Altitude}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Скорость:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Speed.Horizontal}" FontSize="16" TextColor="#2c3e50"/>
                 </StackLayout>
             </Frame>
 

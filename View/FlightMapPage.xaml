@@ -4,10 +4,12 @@
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              x:Class="MapsDemo.View.FlightMapPage"
              Title="FlightMapPage">
-    
-    <StackLayout>
-        <maps:Map x:Name="MyMap" 
-                  IsShowingUser="True" 
-                  VerticalOptions="FillAndExpand" />
-    </StackLayout>
+
+    <Grid>
+        <maps:Map x:Name="MyMap" MapClicked="OnMapClicked">
+            <maps:Map.Pins>
+                
+            </maps:Map.Pins>
+        </maps:Map>
+    </Grid>
 </ContentPage>

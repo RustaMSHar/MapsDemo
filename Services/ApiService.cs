@@ -35,5 +35,22 @@ namespace MapsDemo.Services
             return JsonConvert.DeserializeObject<List<Flight>>(response);
         }
 
+        public static async Task<AirlineInfo> GetAirlineInfo(string iataCode)
+        {
+            var httpClient = new HttpClient();
+            var url = $"https://aviation-edge.com/v2/public/airlineDatabase?codeIataAirline={iataCode}&key={ApiKey}";
+            var response = await httpClient.GetStringAsync(url);
+            var airlineInfoList = JsonConvert.DeserializeObject<List<AirlineInfo>>(response);
+            return airlineInfoList?.FirstOrDefault();
+        }
+        public static async Task<AirportInfo> GetAirportInfo(string iataCode)
+        {
+            var httpClient = new HttpClient();
+            var url = $"https://aviation-edge.com/v2/public/airportDatabase?codeIataAirport={iataCode}&key={ApiKey}";
+            var response = await httpClient.GetStringAsync(url);
+            var airportInfoList = JsonConvert.DeserializeObject<List<AirportInfo>>(response);
+            return airportInfoList?.FirstOrDefault();
+        }
+
     }
 }
