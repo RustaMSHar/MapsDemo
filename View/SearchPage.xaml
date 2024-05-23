@@ -22,6 +22,10 @@
         <Style TargetType="Button">
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="BackgroundColor" Value="#1E90FF"/>
+            <Setter Property="Padding" Value="5,10"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="HeightRequest" Value="50"/>
+
         </Style>
     </ContentPage.Resources>
 
@@ -37,7 +41,7 @@
                 <Label Text="Найти" FontSize="24" Margin="0,10" HorizontalOptions="Center" TextColor="Black"/>
 
                 <!-- Picker для выбора режима поиска -->
-                <Picker x:Name="searchModePicker" SelectedIndexChanged="OnSearchModeChanged"  TextColor="White"  Title="Выберите тип поиска">
+                <Picker x:Name="searchModePicker" SelectedIndexChanged="OnSearchModeChanged"  TextColor="Black"  Title="Выберите тип поиска">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Поиск по аэропортам и дате</x:String>
@@ -75,19 +79,26 @@
                 <!-- Результаты поиска -->
                 <Label Text="Результаты поиска" FontSize="18" Margin="0,20" TextColor="Black"/>
 
+
                 <Frame>
-                    <ListView x:Name="flightResults" BackgroundColor="Transparent" ItemTapped="OnFlightSelected">
+                    <ListView x:Name="flightResults" BackgroundColor="Transparent" ItemTapped="OnFlightSelected" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout Padding="10">
-                                        <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16"/>
+                                    <StackLayout Padding="10" Spacing="10" VerticalOptions="FillAndExpand">
+                                        <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16" />
+                                        <Button Text="Показать на карте" Clicked="OnShowOnMapClicked" BindingContext="{Binding}" HeightRequest="50" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Frame>
+
+
+
+
+
             </StackLayout>
         </ScrollView>
     </Grid>

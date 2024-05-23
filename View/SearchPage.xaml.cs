@@ -7,16 +7,19 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net.NetworkInformation;
 using MapsDemo.Pages;
+using System.ComponentModel;
 
 
 namespace MapsDemo.View;
 
-public partial class SearchPage : ContentPage
+public partial class SearchPage : ContentPage, INotifyPropertyChanged
 {
-	public SearchPage()
+
+    public SearchPage()
 	{
 		InitializeComponent();
-	}
+       
+    }
 
     private async void OnSearchByAirportsAndDate(object sender, EventArgs e)
     {
@@ -89,6 +92,18 @@ public partial class SearchPage : ContentPage
             }
         }
     }
+    private async void OnShowOnMapClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.BindingContext is Flight flight)
+        {
+            await Navigation.PushModalAsync(new FlightMapPage(flight));
+        }
+        else
+        {
+            await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
+        }
+    }
+
 
 
 

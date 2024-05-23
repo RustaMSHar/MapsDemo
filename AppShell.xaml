@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MapsDemo"
     xmlns:View="clr-namespace:MapsDemo.View"
+    xmlns:Pages="clr-namespace:MapsDemo.Pages"
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
@@ -18,7 +19,11 @@
         <Tab Title="Заметки" Icon="{OnPlatform 'notes.png', iOS='notes.png', MacCatalyst='notes.png'}">
             <ShellContent ContentTemplate="{DataTemplate View:AllNotesPage}" Route="AllNotesPage" />
         </Tab>
-      
+        <Tab Title="Расчеты" Icon="{OnPlatform 'calculator.png', iOS='calculator.png', MacCatalyst='calculator.png'}">
+            <ShellContent ContentTemplate="{DataTemplate View:CalculationsPage}" Route="CalculationsPage" />
+        </Tab>
+
+
 
     </TabBar>
     

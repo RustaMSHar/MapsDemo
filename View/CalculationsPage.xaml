@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MapsDemo.View.CalculationsPage"
+             >
+    <StackLayout Padding="10">
+        <Label Text="Выберите тип расчета" 
+               FontSize="Large" 
+               HorizontalOptions="Center" />
+
+        <Picker x:Name="CalculationPicker" 
+                Title="Тип расчета" 
+                SelectedIndexChanged="OnCalculationPickerSelectedIndexChanged">
+            <Picker.Items>
+                <x:String>Расчет топлива</x:String>
+                <x:String>Расчет времени полета</x:String>
+                <x:String>Расчет запаса топлива</x:String>
+                <x:String>Максимальная дальность полета</x:String>
+                <x:String>Время набора высоты</x:String>
+                <x:String>Скорость набора высоты</x:String>
+                <x:String>Время спуска</x:String>
+                <x:String>Скорость спуска</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <!-- Расчет топлива -->
+        <StackLayout x:Name="FuelCalculationLayout" IsVisible="False">
+            <Entry x:Name="DistanceEntry" 
+                   Placeholder="Введите расстояние (км)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="WeightEntry" 
+                   Placeholder="Введите вес самолета (кг)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="SpeedEntry" 
+                   Placeholder="Введите скорость (км/ч)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="FuelConsumptionRateEntry" 
+                   Placeholder="Введите расход топлива (л/ч)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateFuelButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет времени полета -->
+        <StackLayout x:Name="FlightTimeCalculationLayout" IsVisible="False">
+            <Entry x:Name="DistanceFlightTimeEntry" 
+                   Placeholder="Введите расстояние (км)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="SpeedFlightTimeEntry" 
+                   Placeholder="Введите скорость (км/ч)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateFlightTimeButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет запаса топлива -->
+        <StackLayout x:Name="FuelReserveCalculationLayout" IsVisible="False">
+            <Entry x:Name="DistanceReserveEntry" 
+                   Placeholder="Введите расстояние (км)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="SpeedReserveEntry" 
+                   Placeholder="Введите скорость (км/ч)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="FuelConsumptionRateReserveEntry" 
+                   Placeholder="Введите расход топлива (л/ч)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="FuelReservePercentageEntry" 
+                   Placeholder="Введите процент резерва топлива (%)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateFuelReserveButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет максимальной дальности полета -->
+        <StackLayout x:Name="MaxRangeCalculationLayout" IsVisible="False">
+            <Entry x:Name="FuelCapacityEntry" 
+                   Placeholder="Введите емкость топливного бака (л)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="FuelConsumptionRateMaxRangeEntry" 
+                   Placeholder="Введите расход топлива (л/ч)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="SpeedMaxRangeEntry" 
+                   Placeholder="Введите скорость (км/ч)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateMaxRangeButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет времени набора высоты -->
+        <StackLayout x:Name="ClimbTimeCalculationLayout" IsVisible="False">
+            <Entry x:Name="ClimbRateEntry" 
+                   Placeholder="Введите скорость набора высоты (м/мин)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="AltitudeEntry" 
+                   Placeholder="Введите высоту (м)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateClimbTimeButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет скорости набора высоты -->
+        <StackLayout x:Name="ClimbRateCalculationLayout" IsVisible="False">
+            <Entry x:Name="ClimbTimeEntry" 
+                   Placeholder="Введите время набора высоты (мин)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="AltitudeClimbRateEntry" 
+                   Placeholder="Введите высоту (м)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateClimbRateButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет времени спуска -->
+        <StackLayout x:Name="DescentTimeCalculationLayout" IsVisible="False">
+            <Entry x:Name="DescentRateEntry" 
+                   Placeholder="Введите скорость спуска (м/мин)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="AltitudeDescentEntry" 
+                   Placeholder="Введите высоту (м)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateDescentTimeButtonClicked" />
+        </StackLayout>
+
+        <!-- Расчет скорости спуска -->
+        <StackLayout x:Name="DescentRateCalculationLayout" IsVisible="False">
+            <Entry x:Name="DescentTimeEntry" 
+                   Placeholder="Введите время спуска (мин)" 
+                   Keyboard="Numeric" />
+            <Entry x:Name="AltitudeDescentRateEntry" 
+                   Placeholder="Введите высоту (м)" 
+                   Keyboard="Numeric" />
+            <Button Text="Рассчитать" Clicked="OnCalculateDescentRateButtonClicked" />
+        </StackLayout>
+
+        <Label x:Name="ResultLabel" 
+               FontSize="Medium" 
+               HorizontalOptions="Center" 
+               VerticalOptions="CenterAndExpand" />
+    </StackLayout>
+</ContentPage>
