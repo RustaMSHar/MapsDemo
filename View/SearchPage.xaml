@@ -94,11 +94,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Frame>
-
-
-
-
-
             </StackLayout>
         </ScrollView>
     </Grid>
