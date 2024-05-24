@@ -16,7 +16,7 @@ namespace MapsDemo.Services
             try
             {
                 using var httpClient = new HttpClient();
-                var url = $"https://aviation-edge.com/v2/public/timetable?iataCode={departureIata}&type=departure&key={ApiKey}&dep_schTime={date}T12:00:00.000";
+                var url = $"https://aviation-edge.com/v2/public/timetable?iataCode={departureIata}&type=departure&key={ApiKey}&dep_schTime={date}T00:00:00.000";
                 var response = await httpClient.GetStringAsync(url);
                 // Если не удалось, попробуем десериализовать сразу как массив
                 var timetable = JsonConvert.DeserializeObject<List<TimetableResponse>>(response);

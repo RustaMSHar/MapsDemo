@@ -48,7 +48,6 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
     }
 
 
-
     private async void OnSearchByFlightCode(object sender, EventArgs e)
     {
         string flightCode = flightCodeEntry.Text;
