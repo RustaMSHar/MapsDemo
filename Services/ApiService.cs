@@ -42,6 +42,7 @@ namespace MapsDemo.Services
             }
         }
 
+        // Метод для получения информации о самолетах
         public static async Task<AirlineInfo> GetAirlineInfo(string iataCode)
         {
             try
@@ -58,6 +59,7 @@ namespace MapsDemo.Services
             }
 
         }
+        // Метод для получения информации об аэропортах
         public static async Task<AirportInfo> GetAirportInfo(string iataCode)
         {
             try
