@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Net.NetworkInformation;
 using MapsDemo.Pages;
 using System.ComponentModel;
+using System.Text;
 
 
 namespace MapsDemo.View;
@@ -103,6 +104,51 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
         }
     }
+
+    private async void OnAddToNotesClicked(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.BindingContext is Flight flight)
+        {
+            try
+            {
+                // Получение информации об авиакомпании
+                var airlineInfo = await ApiService.GetAirlineInfo(flight.Airline.IataCode);
+                var airlineName = airlineInfo?.NameAirline ?? "Неизвестная авиакомпания";
+
+                // Получение информации об аэропортах
+                var departureInfo = await ApiService.GetAirportInfo(flight.Departure.IataCode);
+                var departureName = departureInfo?.NameAirport ?? "Неизвестный аэропорт";
+
+                var arrivalInfo = await ApiService.GetAirportInfo(flight.Arrival.IataCode);
+                var arrivalName = arrivalInfo?.NameAirport ?? "Неизвестный аэропорт";
+
+                // Формирование текста заметки
+                string appDataPath = FileSystem.AppDataDirectory;
+                string notesFileName = $"{flight.FlightDetails.IataNumber}.notes.txt";
+
+                string noteText = $"Рейс: {flight.FlightDetails.IataNumber}\n" +
+                                  $"Статус: {flight.Status}\n" +
+                                  $"Авиакомпания: {airlineName}\n" +
+                                  $"Отправление: {departureName}\n" +
+                                  $"Прибытие: {arrivalName}\n" +
+                                  $"Высота: {flight.Geography.Altitude}\n" +
+                                  $"Скорость: {flight.Speed.Horizontal}";
+
+                File.WriteAllText(Path.Combine(appDataPath, notesFileName), noteText, Encoding.UTF8);
+
+                await DisplayAlert("Успех", "Данные о рейсе добавлены в заметки.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", $"Не удалось получить данные рейса: {ex.Message}", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
+        }
+    }
+
 
 
 

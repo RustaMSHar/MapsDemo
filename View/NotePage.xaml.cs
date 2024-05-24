@@ -1,4 +1,5 @@
 using MapsDemo.Models;
+using System.Text;
 
 namespace MapsDemo.View;
 
@@ -22,7 +23,7 @@ public partial class NotePage : ContentPage
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
         if (BindingContext is Models.Note note)
-            File.WriteAllText(note.Filename, TextEditor.Text);
+            File.WriteAllText(note.Filename, TextEditor.Text, Encoding.UTF8);
 
         await Shell.Current.GoToAsync("..");
     }

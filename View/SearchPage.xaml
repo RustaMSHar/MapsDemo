@@ -88,6 +88,9 @@
                                     <StackLayout Padding="10" Spacing="10" VerticalOptions="FillAndExpand">
                                         <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16" />
                                         <Button Text="Показать на карте" Clicked="OnShowOnMapClicked" BindingContext="{Binding}" HeightRequest="50" />
+                                        <Button Text="Добавить в заметки" Clicked="OnAddToNotesClicked" BindingContext="{Binding}" HeightRequest="50" />
+                                        
+
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
