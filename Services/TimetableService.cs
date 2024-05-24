@@ -11,28 +11,17 @@ namespace MapsDemo.Services
     {
         private static readonly string ApiKey = "2d83a2-a21b99";
 
-        // Метод для поиска по аэропорту и дате
         public static async Task<List<TimetableResponse>> GetTimetableAsync(string departureIata, string date)
         {
             try
             {
                 using var httpClient = new HttpClient();
-                var url = $"https://aviation-edge.com/v2/public/timetable?iataCode={departureIata}&type=departure&key={ApiKey}&dep_schTime={date}T00:00:00.000";
+                var url = $"https://aviation-edge.com/v2/public/timetable?iataCode={departureIata}&type=departure&key={ApiKey}&dep_schTime={date}T12:00:00.000";
                 var response = await httpClient.GetStringAsync(url);
-
-                if (string.IsNullOrEmpty(response))
-                {
-                    throw new Exception("Пустой ответ от API");
-                }
-
+                // Если не удалось, попробуем десериализовать сразу как массив
                 var timetable = JsonConvert.DeserializeObject<List<TimetableResponse>>(response);
-
-                if (timetable == null)
-                {
-                    throw new Exception("Не удалось десериализовать данные");
-                }
-
                 return timetable;
+
             }
             catch (HttpRequestException httpEx)
             {
@@ -47,5 +36,7 @@ namespace MapsDemo.Services
                 throw new Exception("Не удалось получить данные расписания: " + ex.Message, ex);
             }
         }
+
+
     }
 }

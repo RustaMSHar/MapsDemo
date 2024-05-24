@@ -4,6 +4,7 @@ namespace MapsDemo.Models
 {
     public class TimetableResponse
     {
+
         [JsonProperty("airline")]
         public Airline_T Airline  { get; set; }
 
