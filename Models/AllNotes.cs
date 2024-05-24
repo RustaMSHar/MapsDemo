@@ -12,8 +12,10 @@ namespace MapsDemo.Models
     {
         public ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
 
-        public AllNotes() =>
+        public AllNotes()
+        {
             LoadNotes();
+        }
 
         public void LoadNotes()
         {
@@ -22,20 +24,36 @@ namespace MapsDemo.Models
             string appDataPath = FileSystem.AppDataDirectory;
 
             IEnumerable<Note> notes = Directory
-
                                         .EnumerateFiles(appDataPath, "*.notes.txt")
-
-                                        .Select(filename => new Note()
-                                        {
-                                            Filename = filename,
-                                            Text = File.ReadAllText(filename),
-                                            Date = File.GetCreationTime(filename)
-                                        })
-
+                                        .Select(filename => LoadNoteFromFile(filename))
                                         .OrderBy(note => note.Date);
 
             foreach (Note note in notes)
                 Notes.Add(note);
+        }
+
+        private Note LoadNoteFromFile(string filename)
+        {
+            var noteContent = File.ReadAllText(filename);
+            var noteLines = noteContent.Split(new[] { '\n' }, 2);
+            var note = new Note
+            {
+                Filename = filename,
+                Date = File.GetCreationTime(filename)
+            };
+
+            if (noteLines.Length > 1)
+            {
+                note.Title = noteLines[0];
+                note.Text = noteLines[1];
+            }
+            else
+            {
+                note.Title = noteContent;
+                note.Text = string.Empty;
+            }
+
+            return note;
         }
     }
 }

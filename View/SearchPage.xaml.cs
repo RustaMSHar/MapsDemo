@@ -124,8 +124,9 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
 
                 // Формирование текста заметки
                 string appDataPath = FileSystem.AppDataDirectory;
-                string notesFileName = $"{flight.FlightDetails.IataNumber}.notes.txt";
+                string notesFileName = $"{Path.GetRandomFileName()}.notes.txt";
 
+                string noteTitle = flight.FlightDetails.IataNumber;
                 string noteText = $"Рейс: {flight.FlightDetails.IataNumber}\n" +
                                   $"Статус: {flight.Status}\n" +
                                   $"Авиакомпания: {airlineName}\n" +
@@ -134,7 +135,9 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
                                   $"Высота: {flight.Geography.Altitude}\n" +
                                   $"Скорость: {flight.Speed.Horizontal}";
 
-                File.WriteAllText(Path.Combine(appDataPath, notesFileName), noteText, Encoding.UTF8);
+                string noteContent = $"{noteTitle}\n{noteText}";
+
+                File.WriteAllText(Path.Combine(appDataPath, notesFileName), noteContent, Encoding.UTF8);
 
                 await DisplayAlert("Успех", "Данные о рейсе добавлены в заметки.", "OK");
             }
@@ -148,6 +151,7 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
         }
     }
+
 
 
 

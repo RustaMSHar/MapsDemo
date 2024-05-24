@@ -5,6 +5,13 @@
              Title="Note">
     
     <VerticalStackLayout Spacing="10" Margin="5">
+        
+        <Entry x:Name="TitleEntry"
+               Placeholder="Enter title"
+               Text="{Binding Title}"
+               HeightRequest="40"
+               FontFamily="Arial" />
+        
         <Editor x:Name="TextEditor"
                 Placeholder="Enter your note"
                 Text="{Binding Text}"
