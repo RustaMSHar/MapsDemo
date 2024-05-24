@@ -8,23 +8,7 @@ namespace MapsDemo.Services
 
         private static readonly string ApiKey = "2d83a2-a21b99";
 
-        // Метод для поиска по аэропорту и дате
-        public static async Task<List<Flight>> SearchFlightsByAirportsAndDate(string departureIata, string arrivalIata, string date)
-        {
-            try
-            {
-                using var httpClient = new HttpClient();
-                var url = $"https://aviation-edge.com/v2/public/flights?key={ApiKey}&depIata={departureIata}&arrIata={arrivalIata}&depDate={date}";
-                var response = await httpClient.GetStringAsync(url);
-                return JsonConvert.DeserializeObject<List<Flight>>(response);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to retrieve SearchFlightsByAirportsAndDate by code", ex);
-            }
-
-        }
-
+        
         // Метод для поиска по коду рейса
         public static async Task<Flight> SearchFlightByCode(string flightCode)
         {

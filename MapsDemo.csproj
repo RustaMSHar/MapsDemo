@@ -84,6 +84,7 @@
 
 	<ItemGroup>
 	  <MauiAsset Include="Resources\AppIcon\appiconfg.svg" />
+	  <MauiAsset Include="Resources\Images\appiconfg.svg" />
 	  <MauiAsset Include="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
 

@@ -30,15 +30,24 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
 
         if (!string.IsNullOrEmpty(departureIata) && !string.IsNullOrEmpty(arrivalIata) && !string.IsNullOrEmpty(date))
         {
-            var flights = await ApiService.SearchFlightsByAirportsAndDate(departureIata, arrivalIata, date);
-            // Обработка результатов поиска
-            flightResults.ItemsSource = flights;
+            try
+            {
+                var timetable = await TimetableService.GetTimetableAsync(departureIata, date);
+                var filteredFlights = timetable.Where(f => f.Arrival.IataCode == arrivalIata).ToList();
+                flightResults.ItemsSource = filteredFlights;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", ex.Message, "OK");
+            }
         }
         else
         {
             await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля.", "OK");
         }
     }
+
+
 
     private async void OnSearchByFlightCode(object sender, EventArgs e)
     {

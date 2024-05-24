@@ -102,6 +102,7 @@ namespace MapsDemo.Models
 
         [JsonProperty("icaoCode")]
         public string IcaoCode { get; set; }
+
     }
 
     public class Speed
