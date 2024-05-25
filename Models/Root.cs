@@ -31,8 +31,6 @@ namespace MapsDemo.Models
 
         [JsonProperty("system")]
         public System System { get; set; }
-
-
     }
 
     public class Geography
@@ -57,8 +55,6 @@ namespace MapsDemo.Models
 
         [JsonProperty("number")]
         public string Number { get; set; }
-
-        // Другие необходимые поля
     }
 
 
@@ -102,7 +98,6 @@ namespace MapsDemo.Models
 
         [JsonProperty("icaoCode")]
         public string IcaoCode { get; set; }
-
     }
 
     public class Speed
