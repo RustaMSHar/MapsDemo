@@ -9,8 +9,6 @@ using System.Net.NetworkInformation;
 using MapsDemo.Pages;
 using System.ComponentModel;
 using System.Text;
-
-
 namespace MapsDemo.View;
 
 public partial class SearchPage : ContentPage, INotifyPropertyChanged
@@ -46,8 +44,6 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля.", "OK");
         }
     }
-
-
     private async void OnSearchByFlightCode(object sender, EventArgs e)
     {
         string flightCode = flightCodeEntry.Text;
@@ -159,10 +155,4 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
         }
     }
-
-
-
-
-
-
 }

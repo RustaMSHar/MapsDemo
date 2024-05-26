@@ -20,11 +20,11 @@
         
 
         <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
-            <Button Text="Save"
+            <Button Text="Сохранить"
                     Clicked="SaveButton_Clicked" />
 
             <Button Grid.Column="1"
-                    Text="Delete"
+                    Text="Удалить"
                     Clicked="DeleteButton_Clicked" />
         </Grid>
     </VerticalStackLayout>

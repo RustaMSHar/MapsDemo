@@ -33,7 +33,7 @@ namespace MapsDemo.Services
             try
             {
                 using var httpClient = new HttpClient();
-                var response = await httpClient.GetStringAsync($"https://aviation-edge.com/v2/public/flights?key={ApiKey}&limit=10");
+                var response = await httpClient.GetStringAsync($"https://aviation-edge.com/v2/public/flights?key={ApiKey}&limit=500");
                 return JsonConvert.DeserializeObject<List<Flight>>(response);
             }
             catch (Exception ex)

@@ -14,7 +14,6 @@
                     IsShowingUser="True" 
                     VerticalOptions="FillAndExpand"
                     CustomPins="{Binding Pins}">
-
         </ctrl:MapEx>
     </StackLayout>
 
