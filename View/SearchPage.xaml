@@ -62,6 +62,9 @@
                         <Label Text="Дата вылета"/>
                         <DatePicker x:Name="departureDate" TextColor="White"/>
 
+                        <Label Text="Время вылета"/>
+                        <TimePicker x:Name="departureTime" TextColor="White" />
+
                         <Button Text="Найти рейсы" Clicked="OnSearchByAirportsAndDate"/>
                     </StackLayout>
                 </Frame>

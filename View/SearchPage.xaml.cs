@@ -25,12 +25,14 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
         string departureIata = departureEntry.Text;
         string arrivalIata = arrivalEntry.Text;
         string date = departureDate.Date.ToString("yyyy-MM-dd");
+        TimeSpan time = departureTime.Time;
 
         if (!string.IsNullOrEmpty(departureIata) && !string.IsNullOrEmpty(arrivalIata) && !string.IsNullOrEmpty(date))
         {
             try
             {
-                var timetable = await TimetableService.GetTimetableAsync(departureIata, date);
+                string dateTime = $"{date}T{time:hh\\:mm\\:ss}.000";
+                var timetable = await TimetableService.GetTimetableAsync(departureIata, dateTime);
                 var filteredFlights = timetable.Where(f => f.Arrival.IataCode == arrivalIata).ToList();
                 flightResults.ItemsSource = filteredFlights;
             }
@@ -44,6 +46,7 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Пожалуйста, заполните все поля.", "OK");
         }
     }
+
     private async void OnSearchByFlightCode(object sender, EventArgs e)
     {
         string flightCode = flightCodeEntry.Text;
