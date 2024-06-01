@@ -38,7 +38,7 @@ namespace MapsDemo
 
         private async void MapPinClicked(MapPin pin)
         {
-            await DisplayAlert("Flight Information", $"Flight Number: {pin.Label}\nICAO Number: {pin.Address}", "OK");
+            await DisplayAlert("Информация о рейсе", $"Номер Рейса: {pin.Label}\nКод Рейса: {pin.Address} \n", "OK");
         }
         private async Task LoadFlights()
         {
@@ -60,8 +60,8 @@ namespace MapsDemo
                         var pin = new MapPin(MapPinClicked)
                         {
                             Id = Guid.NewGuid().ToString(),
-                            Label = flight.FlightDetails.Number,
-                            Address = flight.FlightDetails.IcaoNumber,
+                            Label = flight.FlightDetails.Number + flight.Arrival.IataCode,
+                            Address = flight.FlightDetails.IataNumber,
                             Type = PinType.Place,
                             Position = new Location(flight.Geography.Latitude, flight.Geography.Longitude),
                             IconSrc = "dotred" 
