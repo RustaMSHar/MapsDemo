@@ -3,10 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MapsDemo.Pages.FlightDetailsPageData"
              Title="FlightDetailsPageData">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="10">
+            <Label Text="Детали Рейса" FontSize="24" Margin="0,10" TextColor="#2c3e50" HorizontalOptions="Center"/>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Рейс:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Статус:" FontSize="18" TextColor="#34495e"/>
+                    <Label Text="{Binding Status}" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Авиакомпания:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="AirlineLabel" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Отправление:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="DepartureLabel" FontSize="16" TextColor="#2c3e50"/>
+                    <Label Text="Время отправления:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="DepartureTimeLabel" FontSize="16" TextColor="#2c3e50"/>
+                    <Label Text="Терминал отправления:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="DepartureTerminalLabel" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="10" BorderColor="#2c3e50" Padding="10" BackgroundColor="#ffffff" HasShadow="True">
+                <StackLayout Spacing="5">
+                    <Label Text="Прибытие:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="ArrivalLabel" FontSize="16" TextColor="#2c3e50"/>
+                    <Label Text="Время прибытия:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="ArrivalTimeLabel" FontSize="16" TextColor="#2c3e50"/>
+                    <Label Text="Терминал прибытия:" FontSize="18" TextColor="#34495e"/>
+                    <Label x:Name="ArrivalTerminalLabel" FontSize="16" TextColor="#2c3e50"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

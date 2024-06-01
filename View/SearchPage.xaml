@@ -107,7 +107,7 @@
                                 <ViewCell>
                                     <StackLayout Padding="10" Spacing="10" VerticalOptions="FillAndExpand">
                                         <Label Text="Посмотреть информацию о рейсе:" FontSize="16" />
-                                        <Button Text="{Binding FlightDetails.IataNumber}" Clicked="OnFlightSelectedButton" FontSize="16" />
+                                        <Button Text="{Binding FlightDetails.IataNumber}" Clicked="OnFlightSelectedButtonDate" FontSize="16" />
                                         <Button Text="Добавить в заметки" Clicked="OnAddToNotesClicked" BindingContext="{Binding}" HeightRequest="50" />
                                     </StackLayout>
                                 </ViewCell>

@@ -56,9 +56,6 @@
                     <Label Text="{Binding Speed.Horizontal}" FontSize="16" TextColor="#2c3e50"/>
                 </StackLayout>
             </Frame>
-
-            <!-- Добавьте другие необходимые детали рейса с таким же стилем -->
-
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -75,19 +75,12 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Пожалуйста, введите код рейса.", "OK");
         }
     }
-    private async void OnFlightSelected(object sender, ItemTappedEventArgs e)
-    {
-        if (e.Item != null && e.Item is Flight selectedFlight)
-        {
-            await Navigation.PushModalAsync(new FlightDetailsPage(selectedFlight));
-        }
-    }
 
-    private async void OnFlightSelected2(object sender, ItemTappedEventArgs e)
+    private async void OnFlightSelectedButtonDate(object sender, EventArgs e)
     {
-        if (e.Item != null && e.Item is TimetableResponse selectedFlight)
+        if (sender is Button button && button.BindingContext is TimetableResponse timetableResponse)
         {
-            await Navigation.PushModalAsync(new FlightDetailsPageData(selectedFlight));
+            await Navigation.PushModalAsync(new FlightDetailsPageData(timetableResponse));
         }
     }
 
