@@ -17,7 +17,7 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
     public SearchPage()
 	{
 		InitializeComponent();
-       
+        flightResultsFrame.IsVisible = false;
     }
 
     private async void OnSearchByAirportsAndDate(object sender, EventArgs e)
@@ -34,7 +34,7 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
                 string dateTime = $"{date}T{time:hh\\:mm\\:ss}.000";
                 var timetable = await TimetableService.GetTimetableAsync(departureIata, dateTime);
                 var filteredFlights = timetable.Where(f => f.Arrival.IataCode == arrivalIata).ToList();
-                flightResults.ItemsSource = filteredFlights;
+                flightResultsDate.ItemsSource = filteredFlights;
             }
             catch (Exception ex)
             {
@@ -83,6 +83,23 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
         }
     }
 
+    private async void OnFlightSelected2(object sender, ItemTappedEventArgs e)
+    {
+        if (e.Item != null && e.Item is TimetableResponse selectedFlight)
+        {
+            await Navigation.PushModalAsync(new FlightDetailsPageData(selectedFlight));
+        }
+    }
+
+    private async void OnFlightSelectedButton(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.BindingContext is Flight flight)
+        {
+            await Navigation.PushModalAsync(new FlightDetailsPage(flight));
+        }
+    }
+
+
     private void OnSearchModeChanged(object sender, EventArgs e)
     {
         var picker = sender as Picker;
@@ -92,11 +109,15 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             {
                 airportDateSearchFrame.IsVisible = true;
                 flightCodeSearchFrame.IsVisible = false;
+                flightResultsDateFrame.IsVisible = true;
+                flightResultsFrame.IsVisible = false;
             }
             else if (picker.SelectedIndex == 1) // Поиск по коду рейса
             {
                 airportDateSearchFrame.IsVisible = false;
                 flightCodeSearchFrame.IsVisible = true;
+                flightResultsDateFrame.IsVisible = false;
+                flightResultsFrame.IsVisible = true;
             }
         }
     }
@@ -158,4 +179,5 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
             await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
         }
     }
+
 }

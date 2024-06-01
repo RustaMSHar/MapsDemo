@@ -83,17 +83,32 @@
                 <Label Text="Результаты поиска" FontSize="18" Margin="0,20" TextColor="Black"/>
 
 
-                <Frame>
-                    <ListView x:Name="flightResults" BackgroundColor="Transparent" ItemTapped="OnFlightSelected" HasUnevenRows="True">
+                <Frame x:Name="flightResultsFrame">
+                    <ListView x:Name="flightResults" BackgroundColor="Transparent" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Padding="10" Spacing="10" VerticalOptions="FillAndExpand">
-                                        <Label Text="{Binding FlightDetails.IataNumber}" FontSize="16" />
+                                        <Label Text="Посмотреть информацию о рейсе:" FontSize="16" />
+                                        <Button Text="{Binding FlightDetails.IataNumber}" Clicked="OnFlightSelectedButton" FontSize="16" />
                                         <Button Text="Показать на карте" Clicked="OnShowOnMapClicked" BindingContext="{Binding}" HeightRequest="50" />
                                         <Button Text="Добавить в заметки" Clicked="OnAddToNotesClicked" BindingContext="{Binding}" HeightRequest="50" />
-                                        
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
 
+                <Frame x:Name="flightResultsDateFrame">
+                    <ListView x:Name="flightResultsDate" BackgroundColor="Transparent" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10" Spacing="10" VerticalOptions="FillAndExpand">
+                                        <Label Text="Посмотреть информацию о рейсе:" FontSize="16" />
+                                        <Button Text="{Binding FlightDetails.IataNumber}" Clicked="OnFlightSelectedButton" FontSize="16" />
+                                        <Button Text="Добавить в заметки" Clicked="OnAddToNotesClicked" BindingContext="{Binding}" HeightRequest="50" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>

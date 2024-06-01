@@ -77,5 +77,9 @@ namespace MapsDemo.Services
 
         }
 
+        internal static async Task GetAirlineInfoAsync(string iataCode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
