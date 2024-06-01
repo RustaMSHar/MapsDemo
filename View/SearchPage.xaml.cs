@@ -173,4 +173,53 @@ public partial class SearchPage : ContentPage, INotifyPropertyChanged
         }
     }
 
+    private async void OnAddToNotesClickedDate(object sender, EventArgs e)
+    {
+        if (sender is Button button && button.BindingContext is TimetableResponse timetableResponse)
+        {
+            try
+            {
+                // Получение информации об авиакомпании
+                var airlineInfo = await ApiService.GetAirlineInfo(timetableResponse.Airline.IataCode);
+                var airlineName = airlineInfo?.NameAirline ?? "Неизвестная авиакомпания";
+
+                // Получение информации об аэропортах
+                var departureInfo = await ApiService.GetAirportInfo(timetableResponse.Departure.IataCode);
+                var departureName = departureInfo?.NameAirport ?? "Неизвестный аэропорт";
+
+                var arrivalInfo = await ApiService.GetAirportInfo(timetableResponse.Arrival.IataCode);
+                var arrivalName = arrivalInfo?.NameAirport ?? "Неизвестный аэропорт";
+
+                // Формирование текста заметки
+                string appDataPath = FileSystem.AppDataDirectory;
+                string notesFileName = $"{Path.GetRandomFileName()}.notes.txt";
+
+                string noteTitle = timetableResponse.FlightDetails.IataNumber;
+                string noteText = $"Рейс: {timetableResponse.FlightDetails.IataNumber}\n" +
+                                  $"Статус: {timetableResponse.Status}\n" +
+                                  $"Авиакомпания: {airlineName}\n" +
+                                  $"Отправление: {departureName}\n" +
+                                  $"Время отправления: {timetableResponse.Departure.ScheduledTime}\n" +
+                                  $"Терминал отправления: {timetableResponse.Departure.Terminal}\n" +
+                                  $"Прибытие: {arrivalName}\n" +
+                                  $"Время прибытия: {timetableResponse.Arrival.ScheduledTime}\n" +
+                                  $"Терминал прибытия: {timetableResponse.Arrival.Terminal}\n";
+
+                string noteContent = $"{noteTitle}\n{noteText}";
+
+                File.WriteAllText(Path.Combine(appDataPath, notesFileName), noteContent, Encoding.UTF8);
+
+                await DisplayAlert("Успех", "Данные о рейсе добавлены в заметки.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", $"Не удалось получить данные рейса: {ex.Message}", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Ошибка", "Не удалось получить данные рейса.", "OK");
+        }
+    }
+
 }
