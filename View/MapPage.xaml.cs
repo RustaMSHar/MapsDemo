@@ -48,7 +48,6 @@ namespace MapsDemo
                 var flights = await ApiService.GetTracker();
                 var newPins = new List<MapPin>();
                 // Очистка текущих маркеров на карте
-
                 MyMap.Pins.Clear();
                 newPins.Clear();
 
